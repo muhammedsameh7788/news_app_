@@ -36,7 +36,9 @@ class HomeNewsFragment extends StatelessWidget {
             );
           }
 
-          return ArticlesScreen(sources: response?.sources);
+          return ArticlesScreen(
+            sources: response?.sources,
+          );
         });
   }
 }

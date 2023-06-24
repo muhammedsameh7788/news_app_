@@ -16,22 +16,24 @@ class NewsContainer extends StatelessWidget {
         builder: (context, snapshot) {
           //print(source.id);
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (snapshot.hasError) {
-            return Text('Something went wrong');
+            return const Text('Something went wrong');
           }
           if (snapshot.data?.status != 'ok') {
             return Text(snapshot.data?.message ?? '');
           }
-          var newList = snapshot.data?.articles ?? [];
+          var newsList = snapshot.data?.articles ?? [];
           return Expanded(
             child: ListView.separated(
-                itemBuilder: (context, index) => ArticleWidget(newList[index]),
+                itemBuilder: (context, index) => ArticleWidget(
+                      news: newsList[index],
+                    ),
                 separatorBuilder: (context, index) => const SizedBox(
                       height: 12,
                     ),
-                itemCount: newList.length ?? 0),
+                itemCount: newsList.length ?? 0),
           );
         });
   }
