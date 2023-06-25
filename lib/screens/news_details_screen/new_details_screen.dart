@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news/api/model/Articles.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class NewsDetailsScreen extends StatelessWidget {
   static const String routeName = 'news details screen ';
@@ -56,7 +57,7 @@ class NewsDetailsScreen extends StatelessWidget {
               height: 5,
             ),
             Text(
-              news.publishedAt ?? "",
+              timeago.format(DateTime.parse(news.publishedAt ?? "")),
               textAlign: TextAlign.end,
               style: TextStyle(
                 fontSize: 12,
