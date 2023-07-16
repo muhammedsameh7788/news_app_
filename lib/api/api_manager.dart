@@ -8,7 +8,6 @@ import 'model/SourceResponse.dart';
 class ApiManager {
   static const String apiKey = '49d06ed4a0c14630a5521661ecfc33a9';
   static const String baseUri = 'newsapi.org';
-
   static Future<SourceResponse> getNewsSources() async {
     //https://newsapi.org/v2/top-headlines/sources?apiKey=49d06ed4a0c14630a5521661ecfc33a9
     var uri =
@@ -20,12 +19,13 @@ class ApiManager {
 
     return sourcesResponse;
   }
-
   static Future<NewsListResponse> getNewsList(String sourceId) async {
     //https://newsapi.org/v2/top-headlines?country=us&apiKey=49d06ed4a0c14630a5521661ecfc33a9
     var uri = Uri.https(baseUri, 'v2/top-headlines', {
       'apikey': apiKey,
       'sources': sourceId,
+      'language': 'en',
+      'country': 'us'
     });
     var response = await http.get(uri);
     var jsonString = response.body;
